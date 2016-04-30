@@ -1,0 +1,18 @@
+﻿li
+  a(href='#')
+    i.ace-icon.fa.fa-cog
+    | Settings
+li
+  a(href='profile.html')
+    i.ace-icon.fa.fa-user
+    | Profile
+li.divider
+li
+  a(href='/logout')
+    i.ace-icon.fa.fa-power-off
+    | Logout
+if(SupportUser != null)
+ li
+   a(href='/logoutToMain')
+     i.ace-icon.fa.fa-power-off
+     | Logout to Main

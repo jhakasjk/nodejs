@@ -1,0 +1,171 @@
+﻿doctype html
+html(lang='en')
+  head
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(charset='utf-8')
+    title #{title} :: Base Project
+    meta(name='description', content='overview & stats')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    // bootstrap & fontawesome
+    link(rel='stylesheet', href='/assets/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/assets/font-awesome/4.2.0/css/font-awesome.min.css')
+    // page specific plugin styles
+    // text fonts
+    link(rel='stylesheet', href='/assets/fonts/fonts.googleapis.com.css')
+    // ace styles
+    link#main-ace-style.ace-main-stylesheet(rel='stylesheet', href='/assets/css/ace.min.css')
+    //if lte IE 9
+      link.ace-main-stylesheet(rel='stylesheet', href='/assets/css/ace-part2.min.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='/assets/css/ace-ie.min.css')
+    // inline styles related to this page
+    // ace settings handler
+    script(src='/assets/js/ace-extra.min.js')
+    // HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries
+    //if lte IE 8
+      script(src='/assets/js/html5shiv.min.js')
+      script(src='/assets/js/respond.min.js')
+    // validation style
+    link(rel='stylesheet', href='/assets/css/custom/custom.css')
+    link(rel='stylesheet', href='/assets/css/custom/validation.css')
+    link(rel='stylesheet', href='/assets/css/custom/paging.css')
+    link(rel='icon', type='image/png', sizes='16x16', href='/assets/images/favicon.ico')
+    //if !IE
+    script(src='/assets/js/jquery.2.1.1.min.js')
+    // <![endif]
+    //if IE
+      script(src='/assets/js/jquery.1.11.1.min.js')
+    //if !IE
+    script(type='text/javascript').
+      window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>"+"<"+"/script>");
+    // <![endif]
+    //if IE
+      script(type='text/javascript').
+        window.jQuery || document.write("<script src='/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    script(type='text/javascript').
+      if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    script(src='/assets/js/bootstrap.min.js')
+    // page specific plugin scripts
+    //if lte IE 8
+      script(src='/assets/js/excanvas.min.js')
+
+
+  body.no-skin
+    #navbar.navbar.navbar-default
+      script(type='text/javascript')
+         try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+      #navbar-container.navbar-container
+        button#menu-toggler.navbar-toggle.menu-toggler.pull-left(type='button', data-target='#sidebar')
+          span.sr-only Toggle sidebar
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        .navbar-header.pull-left
+          a.navbar-brand(href='index.html')
+            small
+              //i.fa.fa-leaf              
+              | Base Project
+          span.navbar-title 
+            small | #{user.AccountName}
+        .navbar-buttons.navbar-header.pull-right(role='navigation')
+          ul.nav.ace-nav            
+            li.light-blue
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                img.nav-user-photo(src='/assets/avatars/user.jpg', alt="Jason's Photo")
+                span.user-info
+                  if(SupportUser!=null)
+                    small Welcome, 
+                    =SupportUser.FullName
+                  else
+                    small Welcome, 
+                    =user.EmployeeName
+                i.ace-icon.fa.fa-caret-down
+              ul.user-menu.dropdown-menu-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-close
+                include _LoginMenu
+      // /.navbar-container
+    #main-container.main-container
+      script(type='text/javascript').
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+      #sidebar.sidebar.responsive.compact
+        script(type='text/javascript').
+          try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        #sidebar-shortcuts.sidebar-shortcuts
+        ul.nav.nav-list
+          include _SupportUserMenu
+        // /.nav-list
+        #sidebar-collapse.sidebar-toggle.sidebar-collapse
+          i.ace-icon.fa.fa-angle-double-left(data-icon1='ace-icon fa fa-angle-double-left', data-icon2='ace-icon fa fa-angle-double-right')
+        script(type='text/javascript').
+          try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+      .main-content
+        .main-content-inner
+          #breadcrumbs.breadcrumbs
+            script(type='text/javascript').
+              try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+            ul.breadcrumb
+              li
+                i.ace-icon.fa.fa-home.home-icon
+                a(href='#') Home
+              li.active Dashboard
+            // /.breadcrumb
+            #nav-search.nav-search
+              form.form-search(id='change-employer', method='post')
+                span.msg
+                span.input-icon
+                  input.nav-search-input(type='text', placeholder='Corporate ID', id='CorporateID' name='CorporateID' autocomplete='off')
+                  i.ace-icon.fa.fa-search.nav-search-icon                
+            // /.nav-search
+          #ace-settings-container.ace-settings-container
+            form.advance-login.small-form(method="post")
+              #ace-settings-btn.btn.btn-app.btn-xs.btn-warning.ace-settings-btn(title="Advance Login")
+                i.ace-icon.fa.fa-cog.bigger-130
+              #ace-settings-box.ace-settings-box.clearfix
+                .pull-left
+                  .box-container
+                    div
+                        h6 Advance User Login
+                    .ace-settings-item
+                      input.inputbox(type='text', placeholder="Login ID", id="LoginID",name="LoginID")
+                    .ace-settings-item
+                      input.inputbox(type='password', placeholder="Password", id="Password",name="Password")
+                  .ace-settings-item.actions
+                    input#BtnAdvanceLogin.btn.btn-sm.btn-info(type='submit', value="Login")
+                    span.msg
+              // /.ace-settings-box
+            // /.ace-settings-container          
+          block content
+          // /.page-content
+      // /.main-content
+      .footer
+        .footer-inner
+          .footer-content
+            span.bigger-120
+              span.blue.bolder BaseProject
+              | 							Application © 2016-2017
+            span.action-buttons
+              a(href='#')
+                i.ace-icon.fa.fa-twitter-square.light-blue.bigger-150
+              a(href='#')
+                i.ace-icon.fa.fa-facebook-square.text-primary.bigger-150
+              a(href='#')
+                i.ace-icon.fa.fa-rss-square.orange.bigger-150
+      // Common Message Area
+      .common-msg-outer
+        span.common-msg
+      a#btn-scroll-up.btn-scroll-up.btn.btn-sm.btn-inverse(href='#')
+        i.ace-icon.fa.fa-angle-double-up.icon-only.bigger-110
+      #MainThrobberImage(style='position: absolute; z-index: 99999999999999; display: none;')
+        img(alt='throbber', src='/assets/img/ajax-loader.gif')
+    // /.main-container
+    // basic scripts
+    // ace scripts
+    script(src='/assets/js/ace-elements.min.js')
+    script(src='/assets/js/ace.min.js')
+
+    script(src='/assets/js/jquery.validate.min.1.8.1.js')    
+    script(src='/assets/js/html5.js')
+    script(src='/assets/js/jquery.form.js')
+    script(src='/assets/js/custom/common.js')
+    script(src='/assets/js/custom/paging.js')
+    script(src='/assets/js/custom/layout.js')    
+    // inline scripts related to this page    

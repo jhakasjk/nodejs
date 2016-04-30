@@ -1,0 +1,506 @@
+﻿extends ../shared/layout
+
+block content
+    .page-content
+            // Setting Container 
+            .page-header
+              h1
+                | Dashboard
+                small
+                  i.ace-icon.fa.fa-angle-double-right
+                  | 									overview & stats
+            // /.page-header
+            .row
+              .col-xs-12
+                // PAGE CONTENT BEGINS                
+                .row
+                  // /.col
+                  .col-sm-7
+                    .widget-box.transparent
+                      .widget-header.widget-header-flat
+                        h4.widget-title.lighter
+                          i.ace-icon.fa.fa-signal
+                          | 													Sale Stats
+                        .widget-toolbar
+                          a(href='#', data-action='collapse')
+                            i.ace-icon.fa.fa-chevron-up
+                      .widget-body
+                        .widget-main.padding-4
+                          #sales-charts
+                        // /.widget-main
+                      // /.widget-body
+                    // /.widget-box
+                  // /.col
+                  .col-sm-5
+                    .widget-box
+                      .widget-header.widget-header-flat.widget-header-small
+                        h5.widget-title
+                          i.ace-icon.fa.fa-signal
+                          | 													Traffic Sources
+                        .widget-toolbar.no-border
+                          .inline.dropdown-hover
+                            button.btn.btn-minier.btn-primary
+                              | This Week
+                              i.ace-icon.fa.fa-angle-down.icon-on-right.bigger-110
+                            ul.dropdown-menu.dropdown-menu-right.dropdown-125.dropdown-lighter.dropdown-close.dropdown-caret
+                              li.active
+                                a.blue(href='#')
+                                  i.ace-icon.fa.fa-caret-right.bigger-110  
+                                  | 																	This Week
+                              li
+                                a(href='#')
+                                  i.ace-icon.fa.fa-caret-right.bigger-110.invisible  
+                                  | 																	Last Week
+                              li
+                                a(href='#')
+                                  i.ace-icon.fa.fa-caret-right.bigger-110.invisible  
+                                  | 																	This Month
+                              li
+                                a(href='#')
+                                  i.ace-icon.fa.fa-caret-right.bigger-110.invisible  
+                                  | 																	Last Month
+                      .widget-body
+                        .widget-main
+                          #piechart-placeholder
+                          .hr.hr8.hr-double
+                          .clearfix
+                            .grid3
+                              span.grey
+                                i.ace-icon.fa.fa-facebook-square.fa-2x.blue
+                                | 																  likes
+                              h4.bigger.pull-right 1,255
+                            .grid3
+                              span.grey
+                                i.ace-icon.fa.fa-twitter-square.fa-2x.purple
+                                | 																  tweets
+                              h4.bigger.pull-right 941
+                            .grid3
+                              span.grey
+                                i.ace-icon.fa.fa-pinterest-square.fa-2x.red
+                                | 																  pins
+                              h4.bigger.pull-right 1,050
+                        // /.widget-main
+                      // /.widget-body
+                    // /.widget-box
+                  // /.col
+                // /.row
+                .hr.hr32.hr-dotted
+                .row
+                  .col-sm-6
+                    #recent-box.widget-box.transparent
+                      .widget-header
+                        h4.widget-title.lighter.smaller
+                          i.ace-icon.fa.fa-rss.orange
+                          | RECENT
+                        .widget-toolbar.no-border
+                          ul#recent-tab.nav.nav-tabs
+                            li.active
+                              a(data-toggle='tab', href='#task-tab') Tasks
+                            li
+                              a(data-toggle='tab', href='#member-tab') Members
+                            li
+                              a(data-toggle='tab', href='#comment-tab') Comments
+                      .widget-body
+                        .widget-main.padding-4
+                          .tab-content.padding-8
+                            #task-tab.tab-pane.active
+                              h4.smaller.lighter.green
+                                i.ace-icon.fa.fa-list
+                                | 																Sortable Lists
+                              ul#tasks.item-list
+                                li.item-orange.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Answering customer questions
+                                  .pull-right.easy-pie-chart.percentage(data-size='30', data-color='#ECCB71', data-percent='42')
+                                    span.percent 42
+                                    | %
+                                li.item-red.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Fixing bugs
+                                  .pull-right.action-buttons
+                                    a.blue(href='#')
+                                      i.ace-icon.fa.fa-pencil.bigger-130
+                                    span.vbar
+                                    a.red(href='#')
+                                      i.ace-icon.fa.fa-trash-o.bigger-130
+                                    span.vbar
+                                    a.green(href='#')
+                                      i.ace-icon.fa.fa-flag.bigger-130
+                                li.item-default.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Adding new features
+                                  .inline.pull-right.position-relative.dropdown-hover
+                                    button.btn.btn-minier.bigger.btn-primary
+                                      i.ace-icon.fa.fa-cog.icon-only.bigger-120
+                                    ul.dropdown-menu.dropdown-only-icon.dropdown-yellow.dropdown-caret.dropdown-close.dropdown-menu-right
+                                      li
+                                        a.tooltip-success(href='#', data-rel='tooltip', title='Mark as done')
+                                          span.green
+                                            i.ace-icon.fa.fa-check.bigger-110
+                                      li
+                                        a.tooltip-error(href='#', data-rel='tooltip', title='Delete')
+                                          span.red
+                                            i.ace-icon.fa.fa-trash-o.bigger-110
+                                li.item-blue.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Upgrading scripts used in template
+                                li.item-grey.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Adding new skins
+                                li.item-green.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Updating server software up
+                                li.item-pink.clearfix
+                                  label.inline
+                                    input.ace(type='checkbox')
+                                    span.lbl  Cleaning up
+                            #member-tab.tab-pane
+                              .clearfix
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Bob Doe's avatar", src='assets/avatars/user.jpg')
+                                  .body
+                                    .name
+                                      a(href='#') Bob Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 20 min
+                                    div
+                                      span.label.label-warning.label-sm pending
+                                      .inline.position-relative
+                                        button.btn.btn-minier.btn-yellow.btn-no-border.dropdown-toggle(data-toggle='dropdown', data-position='auto')
+                                          i.ace-icon.fa.fa-angle-down.icon-only.bigger-120
+                                        ul.dropdown-menu.dropdown-only-icon.dropdown-yellow.dropdown-menu-right.dropdown-caret.dropdown-close
+                                          li
+                                            a.tooltip-success(href='#', data-rel='tooltip', title='Approve')
+                                              span.green
+                                                i.ace-icon.fa.fa-check.bigger-110
+                                          li
+                                            a.tooltip-warning(href='#', data-rel='tooltip', title='Reject')
+                                              span.orange
+                                                i.ace-icon.fa.fa-times.bigger-110
+                                          li
+                                            a.tooltip-error(href='#', data-rel='tooltip', title='Delete')
+                                              span.red
+                                                i.ace-icon.fa.fa-trash-o.bigger-110
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Joe Doe's avatar", src='assets/avatars/avatar2.png')
+                                  .body
+                                    .name
+                                      a(href='#') Joe Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 1 hour
+                                    div
+                                      span.label.label-warning.label-sm pending
+                                      .inline.position-relative
+                                        button.btn.btn-minier.btn-yellow.btn-no-border.dropdown-toggle(data-toggle='dropdown', data-position='auto')
+                                          i.ace-icon.fa.fa-angle-down.icon-only.bigger-120
+                                        ul.dropdown-menu.dropdown-only-icon.dropdown-yellow.dropdown-menu-right.dropdown-caret.dropdown-close
+                                          li
+                                            a.tooltip-success(href='#', data-rel='tooltip', title='Approve')
+                                              span.green
+                                                i.ace-icon.fa.fa-check.bigger-110
+                                          li
+                                            a.tooltip-warning(href='#', data-rel='tooltip', title='Reject')
+                                              span.orange
+                                                i.ace-icon.fa.fa-times.bigger-110
+                                          li
+                                            a.tooltip-error(href='#', data-rel='tooltip', title='Delete')
+                                              span.red
+                                                i.ace-icon.fa.fa-trash-o.bigger-110
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Jim Doe's avatar", src='assets/avatars/avatar.png')
+                                  .body
+                                    .name
+                                      a(href='#') Jim Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 2 hour
+                                    div
+                                      span.label.label-warning.label-sm pending
+                                      .inline.position-relative
+                                        button.btn.btn-minier.btn-yellow.btn-no-border.dropdown-toggle(data-toggle='dropdown', data-position='auto')
+                                          i.ace-icon.fa.fa-angle-down.icon-only.bigger-120
+                                        ul.dropdown-menu.dropdown-only-icon.dropdown-yellow.dropdown-menu-right.dropdown-caret.dropdown-close
+                                          li
+                                            a.tooltip-success(href='#', data-rel='tooltip', title='Approve')
+                                              span.green
+                                                i.ace-icon.fa.fa-check.bigger-110
+                                          li
+                                            a.tooltip-warning(href='#', data-rel='tooltip', title='Reject')
+                                              span.orange
+                                                i.ace-icon.fa.fa-times.bigger-110
+                                          li
+                                            a.tooltip-error(href='#', data-rel='tooltip', title='Delete')
+                                              span.red
+                                                i.ace-icon.fa.fa-trash-o.bigger-110
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Alex Doe's avatar", src='assets/avatars/avatar5.png')
+                                  .body
+                                    .name
+                                      a(href='#') Alex Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 3 hour
+                                    div
+                                      span.label.label-danger.label-sm blocked
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Bob Doe's avatar", src='assets/avatars/avatar2.png')
+                                  .body
+                                    .name
+                                      a(href='#') Bob Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 6 hour
+                                    div
+                                      span.label.label-success.label-sm.arrowed-in approved
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Susan's avatar", src='assets/avatars/avatar3.png')
+                                  .body
+                                    .name
+                                      a(href='#') Susan
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green yesterday
+                                    div
+                                      span.label.label-success.label-sm.arrowed-in approved
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Phil Doe's avatar", src='assets/avatars/avatar4.png')
+                                  .body
+                                    .name
+                                      a(href='#') Phil Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 2 days ago
+                                    div
+                                      span.label.label-info.label-sm.arrowed-in.arrowed-in-right online
+                                .itemdiv.memberdiv
+                                  .user
+                                    img(alt="Alexa Doe's avatar", src='assets/avatars/avatar1.png')
+                                  .body
+                                    .name
+                                      a(href='#') Alexa Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 3 days ago
+                                    div
+                                      span.label.label-success.label-sm.arrowed-in approved
+                              .space-4
+                              .center
+                                i.ace-icon.fa.fa-users.fa-2x.green.middle
+                                a.btn.btn-sm.btn-white.btn-info(href='#')
+                                  | See all members  
+                                  i.ace-icon.fa.fa-arrow-right
+                              .hr.hr-double.hr8
+                            // /.#member-tab
+                            #comment-tab.tab-pane
+                              .comments
+                                .itemdiv.commentdiv
+                                  .user
+                                    img(alt="Bob Doe's Avatar", src='assets/avatars/avatar.png')
+                                  .body
+                                    .name
+                                      a(href='#') Bob Doe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.green 6 min
+                                    .text
+                                      i.ace-icon.fa.fa-quote-left
+                                      | 																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis …
+                                  .tools
+                                    .inline.position-relative
+                                      button.btn.btn-minier.bigger.btn-yellow.dropdown-toggle(data-toggle='dropdown')
+                                        i.ace-icon.fa.fa-angle-down.icon-only.bigger-120
+                                      ul.dropdown-menu.dropdown-only-icon.dropdown-yellow.dropdown-menu-right.dropdown-caret.dropdown-close
+                                        li
+                                          a.tooltip-success(href='#', data-rel='tooltip', title='Approve')
+                                            span.green
+                                              i.ace-icon.fa.fa-check.bigger-110
+                                        li
+                                          a.tooltip-warning(href='#', data-rel='tooltip', title='Reject')
+                                            span.orange
+                                              i.ace-icon.fa.fa-times.bigger-110
+                                        li
+                                          a.tooltip-error(href='#', data-rel='tooltip', title='Delete')
+                                            span.red
+                                              i.ace-icon.fa.fa-trash-o.bigger-110
+                                .itemdiv.commentdiv
+                                  .user
+                                    img(alt="Jennifer's Avatar", src='assets/avatars/avatar1.png')
+                                  .body
+                                    .name
+                                      a(href='#') Jennifer
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.blue 15 min
+                                    .text
+                                      i.ace-icon.fa.fa-quote-left
+                                      | 																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis …
+                                  .tools
+                                    .action-buttons.bigger-125
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-pencil.blue
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-trash-o.red
+                                .itemdiv.commentdiv
+                                  .user
+                                    img(alt="Joe's Avatar", src='assets/avatars/avatar2.png')
+                                  .body
+                                    .name
+                                      a(href='#') Joe
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.orange 22 min
+                                    .text
+                                      i.ace-icon.fa.fa-quote-left
+                                      | 																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis …
+                                  .tools
+                                    .action-buttons.bigger-125
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-pencil.blue
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-trash-o.red
+                                .itemdiv.commentdiv
+                                  .user
+                                    img(alt="Rita's Avatar", src='assets/avatars/avatar3.png')
+                                  .body
+                                    .name
+                                      a(href='#') Rita
+                                    .time
+                                      i.ace-icon.fa.fa-clock-o
+                                      span.red 50 min
+                                    .text
+                                      i.ace-icon.fa.fa-quote-left
+                                      | 																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis …
+                                  .tools
+                                    .action-buttons.bigger-125
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-pencil.blue
+                                      a(href='#')
+                                        i.ace-icon.fa.fa-trash-o.red
+                              .hr.hr8
+                              .center
+                                i.ace-icon.fa.fa-comments-o.fa-2x.green.middle
+                                a.btn.btn-sm.btn-white.btn-info(href='#')
+                                  | See all comments  
+                                  i.ace-icon.fa.fa-arrow-right
+                              .hr.hr-double.hr8
+                        // /.widget-main
+                      // /.widget-body
+                    // /.widget-box
+                  // /.col
+                  .col-sm-6
+                    .widget-box
+                      .widget-header
+                        h4.widget-title.lighter.smaller
+                          i.ace-icon.fa.fa-comment.blue
+                          | 													Conversation
+                      .widget-body
+                        .widget-main.no-padding
+                          .dialogs
+                            .itemdiv.dialogdiv
+                              .user
+                                img(alt="Alexa's Avatar", src='assets/avatars/avatar1.png')
+                              .body
+                                .time
+                                  i.ace-icon.fa.fa-clock-o
+                                  span.green 4 sec
+                                .name
+                                  a(href='#') Alexa
+                                .text
+                                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+                                .tools
+                                  a.btn.btn-minier.btn-info(href='#')
+                                    i.icon-only.ace-icon.fa.fa-share
+                            .itemdiv.dialogdiv
+                              .user
+                                img(alt="John's Avatar", src='assets/avatars/avatar.png')
+                              .body
+                                .time
+                                  i.ace-icon.fa.fa-clock-o
+                                  span.blue 38 sec
+                                .name
+                                  a(href='#') John
+                                .text Raw denim you probably haven't heard of them jean shorts Austin.
+                                .tools
+                                  a.btn.btn-minier.btn-info(href='#')
+                                    i.icon-only.ace-icon.fa.fa-share
+                            .itemdiv.dialogdiv
+                              .user
+                                img(alt="Bob's Avatar", src='assets/avatars/user.jpg')
+                              .body
+                                .time
+                                  i.ace-icon.fa.fa-clock-o
+                                  span.orange 2 min
+                                .name
+                                  a(href='#') Bob
+                                  span.label.label-info.arrowed.arrowed-in-right admin
+                                .text
+                                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.
+                                .tools
+                                  a.btn.btn-minier.btn-info(href='#')
+                                    i.icon-only.ace-icon.fa.fa-share
+                            .itemdiv.dialogdiv
+                              .user
+                                img(alt="Jim's Avatar", src='assets/avatars/avatar4.png')
+                              .body
+                                .time
+                                  i.ace-icon.fa.fa-clock-o
+                                  span.grey 3 min
+                                .name
+                                  a(href='#') Jim
+                                .text Raw denim you probably haven't heard of them jean shorts Austin.
+                                .tools
+                                  a.btn.btn-minier.btn-info(href='#')
+                                    i.icon-only.ace-icon.fa.fa-share
+                            .itemdiv.dialogdiv
+                              .user
+                                img(alt="Alexa's Avatar", src='assets/avatars/avatar1.png')
+                              .body
+                                .time
+                                  i.ace-icon.fa.fa-clock-o
+                                  span.green 4 min
+                                .name
+                                  a(href='#') Alexa
+                                .text Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                .tools
+                                  a.btn.btn-minier.btn-info(href='#')
+                                    i.icon-only.ace-icon.fa.fa-share
+                          form
+                            .form-actions
+                              .input-group
+                                input.form-control(placeholder='Type your message here ...', type='text', name='message')
+                                span.input-group-btn
+                                  button.btn.btn-sm.btn-info.no-radius(type='button')
+                                    i.ace-icon.fa.fa-share
+                                    | 																		Send
+                        // /.widget-main
+                      // /.widget-body
+                    // /.widget-box
+                  // /.col
+                // /.row
+                // PAGE CONTENT ENDS
+              // /.col
+            // /.row
+
+    script(src='/assets/js/jquery-ui.custom.min.js')
+    script(src='/assets/js/jquery.ui.touch-punch.min.js')
+    script(src='/assets/js/jquery.easypiechart.min.js')
+    script(src='/assets/js/jquery.sparkline.min.js')
+    script(src='/assets/js/jquery.flot.min.js')
+    script(src='/assets/js/jquery.flot.pie.min.js')
+    script(src='/assets/js/jquery.flot.resize.min.js')
+    script(src='/assets/js/custom/dashboard.js')
